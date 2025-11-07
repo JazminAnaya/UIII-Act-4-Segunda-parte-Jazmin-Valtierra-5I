@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Lista de Sucursales</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th><th>Nombre</th><th>Ciudad</th><th>Teléfono</th><th># Salas</th><th>Estado</th><th>Formato</th><th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in sucursales %}
+      <tr>
+        <td>{{ s.id_sucursal }}</td>
+        <td>{{ s.nombre_cine }}</td>
+        <td>{{ s.ciudad }}</td>
+        <td>{{ s.telefono }}</td>
+        <td>{{ s.numero_salas }}</td>
+        <td>{{ s.estado }}</td>
+        <td>{{ s.formatos }}</td>
+        <td>
+          <a class="btn btn-sm btn-info" href="{% url 'actualizar_sucursal' s.id_sucursal %}">Editar</a>
+          <a class="btn btn-sm btn-danger" href="{% url 'borrar_sucursal' s.id_sucursal %}">Borrar</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="8">No hay sucursales registradas.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

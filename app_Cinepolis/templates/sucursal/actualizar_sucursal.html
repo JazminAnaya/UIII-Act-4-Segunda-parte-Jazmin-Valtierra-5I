@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Actualizar Sucursal</h2>
+  <form method="post" action="{% url 'realizar_actualizacion_sucursal' sucursal.id_sucursal %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Nombre cine</label>
+      <input name="nombre_cine" value="{{ sucursal.nombre_cine }}" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Dirección</label>
+      <input name="direccion" value="{{ sucursal.direccion }}" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Ciudad</label>
+      <input name="ciudad" value="{{ sucursal.ciudad }}" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Teléfono</label>
+      <input name="telefono" value="{{ sucursal.telefono }}" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Número salas</label>
+      <input name="numero_salas" type="number" value="{{ sucursal.numero_salas }}" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Estado</label>
+      <select name="estado" class="form-select">
+        <option value="activo" {% if sucursal.estado == 'activo' %}selected{% endif %}>Activo</option>
+        <option value="cerrado" {% if sucursal.estado == 'cerrado' %}selected{% endif %}>Cerrado</option>
+        <option value="mantenimiento" {% if sucursal.estado == 'mantenimiento' %}selected{% endif %}>Mantenimiento</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Formato</label>
+      <select name="formatos" class="form-select">
+        <option value="tradicional" {% if sucursal.formatos == 'tradicional' %}selected{% endif %}>Tradicional</option>
+        <option value="3D" {% if sucursal.formatos == '3D' %}selected{% endif %}>3D</option>
+        <option value="4DX" {% if sucursal.formatos == '4DX' %}selected{% endif %}>4DX</option>
+        <option value="VIP" {% if sucursal.formatos == 'VIP' %}selected{% endif %}>VIP</option>
+        <option value="IMAX" {% if sucursal.formatos == 'IMAX' %}selected{% endif %}>IMAX</option>
+        <option value="JUNIOR" {% if sucursal.formatos == 'JUNIOR' %}selected{% endif %}>Junior</option>
+      </select>
+    </div>
+    <button class="btn btn-success" type="submit">Actualizar</button>
+  </form>
+{% endblock %}

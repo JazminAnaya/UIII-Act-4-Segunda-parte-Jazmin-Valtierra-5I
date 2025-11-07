@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Listado de Salas</h2>
+<a class="btn btn-primary mb-3" href="{% url 'agregar_sala' %}">+ Agregar Sala</a>
+
+<table class="table table-striped align-middle">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Número</th>
+      <th>Tipo</th>
+      <th>Capacidad</th>
+      <th>Estado</th>
+      <th>F. Mantenimiento</th>
+      <th>Asientos esp.</th>
+      <th>Sucursal</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sala in salas %}
+    <tr>
+      <td>{{ sala.id_sala }}</td>
+      <td>{{ sala.numero_sala }}</td>
+      <td>{{ sala.tipo_sala }}</td>
+      <td>{{ sala.capacidad }}</td>
+      <td>{{ sala.estado }}</td>
+      <td>{{ sala.fecha_ultimo_mantenimiento }}</td>
+      <td>{{ sala.asientos_especiales }}</td>
+      <td>{{ sala.sucursal.nombre_cine }} - {{ sala.sucursal.ciudad }}</td>
+      <td>
+        <a class="btn btn-sm btn-info" href="{% url 'actualizar_sala' sala.id_sala %}">Editar</a>
+        <a class="btn btn-sm btn-danger" href="{% url 'borrar_sala' sala.id_sala %}">Borrar</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="9">No hay salas registradas.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

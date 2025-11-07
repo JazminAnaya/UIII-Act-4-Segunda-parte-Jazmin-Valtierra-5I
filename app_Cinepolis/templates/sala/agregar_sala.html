@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Agregar Sala</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="row g-3">
+    <div class="col-md-3">
+      <label class="form-label">Número de sala</label>
+      <input name="numero_sala" type="number" class="form-control" required>
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Tipo de sala</label>
+      <select name="tipo_sala" class="form-select">
+        <option>Tradicional</option>
+        <option>3D</option>
+        <option>4DX</option>
+        <option>VIP</option>
+        <option>IMAX</option>
+        <option>JUNIOR</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Capacidad</label>
+      <input name="capacidad" type="number" class="form-control">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Estado</label>
+      <select name="estado" class="form-select">
+        <option>Desocupada</option>
+        <option>Ocupada</option>
+        <option>En mantenimiento</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Fecha último mantenimiento</label>
+      <input name="fecha_ultimo_mantenimiento" type="date" class="form-control">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Asientos especiales</label>
+      <input name="asientos_especiales" type="number" class="form-control">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Sucursal</label>
+      <select name="sucursal_id" class="form-select" required>
+        {% for s in sucursales %}
+          <option value="{{ s.id_sucursal }}">{{ s.nombre_cine }} - {{ s.ciudad }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="mt-3">
+    <button class="btn btn-primary" type="submit">Guardar</button>
+    <a class="btn btn-secondary" href="{% url 'ver_sala' %}">Cancelar</a>
+  </div>
+</form>
+{% endblock %}

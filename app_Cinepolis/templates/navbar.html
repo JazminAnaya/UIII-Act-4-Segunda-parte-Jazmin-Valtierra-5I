@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'inicio' %}">
+        <i class="bi bi-film"></i> Sistema de Administración Cinepolis
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}"><i class="bi bi-house"></i> Inicio</a></li>
+  
+          <!-- Sucursales -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="bi bi-geo-alt"></i> Sucursal</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'agregar_sucursal' %}">Agregar sucursal</a></li>
+              <li><a class="dropdown-item" href="{% url 'ver_sucursales' %}">Ver sucursales</a></li>
+            </ul>
+          </li>
+  
+          <!-- Salas -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="bi bi-door-open"></i> Salas</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'agregar_sala' %}">Agregar salas</a></li>
+              <li><a class="dropdown-item" href="{% url 'ver_sala' %}">Ver salas</a></li>
+              <!-- Para Actualizar/Borrar se navega desde la tabla (botones Editar/Borrar) -->
+              <li><a class="dropdown-item" href="{% url 'ver_sala' %}">Actualizar salas</a></li>
+              <li><a class="dropdown-item" href="{% url 'ver_sala' %}">Borrar salas</a></li>
+            </ul>
+          </li>
+  
+          <!-- Peliculas -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="bi bi-camera-reels"></i> Películas</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Agregar películas</a></li>
+              <li><a class="dropdown-item" href="#">Ver películas</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Actualizar Sala</h2>
+<form method="post" action="{% url 'realizar_actualizacion_sala' sala.id_sala %}">
+  {% csrf_token %}
+  <div class="row g-3">
+    <div class="col-md-3">
+      <label class="form-label">Número de sala</label>
+      <input name="numero_sala" type="number" value="{{ sala.numero_sala }}" class="form-control">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Tipo de sala</label>
+      <select name="tipo_sala" class="form-select">
+        <option {% if sala.tipo_sala == 'Tradicional' %}selected{% endif %}>Tradicional</option>
+        <option {% if sala.tipo_sala == '3D' %}selected{% endif %}>3D</option>
+        <option {% if sala.tipo_sala == '4DX' %}selected{% endif %}>4DX</option>
+        <option {% if sala.tipo_sala == 'VIP' %}selected{% endif %}>VIP</option>
+        <option {% if sala.tipo_sala == 'IMAX' %}selected{% endif %}>IMAX</option>
+        <option {% if sala.tipo_sala == 'JUNIOR' %}selected{% endif %}>JUNIOR</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Capacidad</label>
+      <input name="capacidad" type="number" value="{{ sala.capacidad }}" class="form-control">
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Estado</label>
+      <select name="estado" class="form-select">
+        <option {% if sala.estado == 'Desocupada' %}selected{% endif %}>Desocupada</option>
+        <option {% if sala.estado == 'Ocupada' %}selected{% endif %}>Ocupada</option>
+        <option {% if sala.estado == 'En mantenimiento' %}selected{% endif %}>En mantenimiento</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Fecha último mantenimiento</label>
+      <input name="fecha_ultimo_mantenimiento" type="date" value="{{ sala.fecha_ultimo_mantenimiento|date:'Y-m-d' }}" class="form-control">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Asientos especiales</label>
+      <input name="asientos_especiales" type="number" value="{{ sala.asientos_especiales }}" class="form-control">
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Sucursal</label>
+      <select name="sucursal_id" class="form-select">
+        {% for s in sucursales %}
+          <option value="{{ s.id_sucursal }}" {% if s.id_sucursal == sala.sucursal.id_sucursal %}selected{% endif %}>
+            {{ s.nombre_cine }} - {{ s.ciudad }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="mt-3">
+    <button class="btn btn-success" type="submit">Actualizar</button>
+    <a class="btn btn-secondary" href="{% url 'ver_sala' %}">Cancelar</a>
+  </div>
+</form>
+{% endblock %}
